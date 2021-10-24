@@ -10,14 +10,14 @@ namespace Beth.Notifications.ServiceConsole
     {
         private static void Main(string[] args)
         {
-            SendNotification("Test message");
+            SendNotification("Test sms message", new SmsSender());
+            SendNotification("Test email message", new EmailSender());
             Console.ReadKey();
         }
 
-        private static void SendNotification(string message)
+        private static void SendNotification(string message, INotificationSender sender)
         {
             var command = new SendNotificationCommand(message);
-            INotificationSender sender = new Sender();
             var handler = new SendNotificationCommandHandler(sender);
             handler.Handle(command, CancellationToken.None);
         }

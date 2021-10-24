@@ -6,11 +6,11 @@ using Beth.Notifications.Domain.Entities;
 
 namespace Beth.Notifications.Infrastructure.Services.NotificationSender
 {
-    public class Sender : INotificationSender
+    public class EmailSender : INotificationSender
     {
         public async Task SendNotificationAsync(Notification notification, CancellationToken cancellationToken)
         {
-            Console.WriteLine($"Notification sent with message \"{notification.Message}\"", "test");
+            Console.WriteLine($"Notification was sent via email with message \"{notification.Message}\"", "test");
             await Task.CompletedTask;
         }
     }
