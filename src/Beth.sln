@@ -2,13 +2,13 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{D0CFA81A-DAD0-40EB-A07C-A8E22226F7CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.Domain", "Notifications\Beth.Notifications.Domain\Beth.Notifications.Domain.csproj", "{A3E75417-63C3-4879-8DEA-C178574FE722}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.Domain", "Services\Notifications\Beth.Notifications.Domain\Beth.Notifications.Domain.csproj", "{A3E75417-63C3-4879-8DEA-C178574FE722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.Application", "Notifications\Beth.Notifications.Application\Beth.Notifications.Application.csproj", "{65ACF883-E59E-450E-8A8D-50E17AD3ACE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.Application", "Services\Notifications\Beth.Notifications.Application\Beth.Notifications.Application.csproj", "{65ACF883-E59E-450E-8A8D-50E17AD3ACE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.Infrastructure", "Notifications\Beth.Notifications.Infrastructure\Beth.Notifications.Infrastructure.csproj", "{453D7034-C172-4A87-8E80-59D1DE46AD70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.Infrastructure", "Services\Notifications\Beth.Notifications.Infrastructure\Beth.Notifications.Infrastructure.csproj", "{453D7034-C172-4A87-8E80-59D1DE46AD70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.ServiceConsole", "Notifications\Beth.Notifications.ServiceConsole\Beth.Notifications.ServiceConsole.csproj", "{1B69BD18-B703-4B99-9FAA-C940A0224099}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Notifications.ServiceConsole", "Services\Notifications\Beth.Notifications.ServiceConsole\Beth.Notifications.ServiceConsole.csproj", "{1B69BD18-B703-4B99-9FAA-C940A0224099}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C3D036AE-B9E8-4DCF-B3C6-72E497B9E4B4}"
 EndProject
