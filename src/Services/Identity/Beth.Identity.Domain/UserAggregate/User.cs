@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Beth.Identity.Domain.AggregatesModel.UserAggregate;
+namespace Beth.Identity.Domain.UserAggregate;
 
 public class User
 {
