@@ -15,9 +15,9 @@ public class FakeOneTimeCodeRepository : IOneTimeCodeRepository
         }
     }
 
-    public async Task<OneTimeCode?> FindActiveCodeAsync(Guid userId)
+    public async Task<OneTimeCode?> FindActiveCodeAsync(string mobilePhone)
     {
-        var code = _codes?.SingleOrDefault(c => c.UserId == userId && c.ExpiredAt > DateTime.Now);
+        var code = _codes?.SingleOrDefault(c => c.MobilePhone == mobilePhone && c.ExpiredAt > DateTime.Now);
         return await Task.FromResult(code);
     }
 

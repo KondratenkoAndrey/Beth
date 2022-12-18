@@ -19,7 +19,7 @@ namespace Beth.Identity.Api.Controllers
 
         [Route("otp/toPhone/{mobilePhone}")]
         [HttpGet]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(SentCodeModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult> SendOtpByPhone(
             [Required]

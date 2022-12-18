@@ -1,6 +1,5 @@
 ﻿using Beth.Identity.Domain.Authenticate;
 using Beth.Identity.Domain.Interfaces;
-using Beth.Identity.Domain.UserAggregate;
 using Microsoft.Extensions.Logging;
 
 namespace Beth.Identity.Infrastructure;
@@ -14,9 +13,9 @@ public class FakeOneTimeCodeSender : IOneTimeCodeSender
         _logger = logger;
     }
 
-    public Task SendAsync(OneTimeCode code, User user)
+    public Task SendAsync(OneTimeCode code, string mobilePhone)
     {
-        _logger.LogInformation("Одноразовый код {code} для пользователя {user} отправлен на {phone}", code.Code, user.Id, user.MobilePhone);
+        _logger.LogInformation("Одноразовый код {code} отправлен на {phone}", code.Code, mobilePhone);
         return Task.CompletedTask;
     }
 }
