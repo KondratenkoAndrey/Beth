@@ -5,7 +5,6 @@
         <TargetFramework>net6.0</TargetFramework>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <RootNamespace>Beth.Notifications.ServiceConsole</RootNamespace>
-        <LangVersion>11</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>

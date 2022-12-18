@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>Beth.Notifications.Application</RootNamespace>
-        <LangVersion>11</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
