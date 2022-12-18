@@ -8,15 +8,23 @@ using NUnit.Framework;
 
 namespace Beth.Identity.UnitTests.Domain.Services.OneTimeCodeServiceTests;
 
+[TestFixture]
 public class SendOneTimeCode
 {
-    private readonly Mock<IOneTimeCodeRepository> _oneTimeCodeRepository = new();
-    private readonly Mock<IOneTimeCodeSender> _oneTimeCodeSender = new();
+    private readonly Mock<IOneTimeCodeRepository> _oneTimeCodeRepository;
+    private readonly Mock<IOneTimeCodeSender> _oneTimeCodeSender;
 
-    
+    public SendOneTimeCode()
+    {
+        _oneTimeCodeRepository = new Mock<IOneTimeCodeRepository>();
+        _oneTimeCodeSender = new Mock<IOneTimeCodeSender>();
+    }
+
     [SetUp]
     public void Setup()
     {
+        _oneTimeCodeSender.Reset();
+        _oneTimeCodeRepository.Reset();
     }
 
     [Test]
