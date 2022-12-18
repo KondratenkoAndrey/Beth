@@ -5,5 +5,5 @@ namespace Beth.Identity.Domain.Interfaces;
 
 public interface IOneTimeCodeSender
 {
-    public Task SendAsync(OneTimeCode code, string mobilePhone);
+    public Task SendAsync(OneTimeCode code);
 }

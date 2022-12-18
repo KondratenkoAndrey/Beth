@@ -28,41 +28,29 @@ public class SendOneTimeCode
     }
 
     [Test]
-    public async Task InvokeSendServiceSendOneTimeCodeOnce()
+    public async Task IfActiveCodeNotFoundShouldCreateSendAndReturnNewCode()
     {
         var mobilePhone = "1234567890";
         var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object);
-        await sender.SendOneTimeCode(mobilePhone);
-        _oneTimeCodeSender.Verify(x => x.SendAsync(It.IsAny<OneTimeCode>(), mobilePhone), Times.Once);
-    }
-
-    [Test]
-    public async Task IfNewCodeGeneratedShouldInvokeOneTimeCodeRepositoryAddCodeAsyncOnce()
-    {
-        var mobilePhone = "1234567890";
-        var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object);
-        await sender.SendOneTimeCode(mobilePhone);
-        _oneTimeCodeRepository.Verify(x => x.AddCodeAsync(It.IsAny<OneTimeCode>()), Times.Once);
-    }
-
-    [Test]
-    public async Task ReturnIsNewFlagIfActiveCodeNotFound()
-    {
-        var mobilePhone = "1234567890";
-        var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object);
-        var (_, isNew) = await sender.SendOneTimeCode(mobilePhone);
+        var (code, isNew) = await sender.SendOneTimeCode(mobilePhone);
+        _oneTimeCodeRepository.Verify(r => r.AddCodeAsync(code), Times.Once);
+        _oneTimeCodeSender.Verify(s => s.SendAsync(code), Times.Once);
+        code.Should().NotBeNull();
+        code.MobilePhone.Should().Be(mobilePhone);
         isNew.Should().BeTrue();
     }
 
     [Test]
-    public async Task ReturnNotIsNewFlagIfActiveCodeFound()
+    public async Task IfActiveCodeFoundShouldReturnExistsCode()
     {
         var mobilePhone = "1234567890";
         _oneTimeCodeRepository
             .Setup(r => r.FindActiveCodeAsync(mobilePhone))
             .ReturnsAsync(new OneTimeCode(mobilePhone));
         var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object);
-        var (_, isNew) = await sender.SendOneTimeCode(mobilePhone);
+        var (code, isNew) = await sender.SendOneTimeCode(mobilePhone);
+        code.Should().NotBeNull();
+        code.MobilePhone.Should().Be(mobilePhone);
         isNew.Should().BeFalse();
     }
 }

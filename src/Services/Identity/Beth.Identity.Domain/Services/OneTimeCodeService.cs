@@ -27,7 +27,7 @@ public class OneTimeCodeService : IOneTimeCodeService
 
         code = new OneTimeCode(mobilePhone);
         await _oneTimeCodeRepository.AddCodeAsync(code);
-        await _oneTimeCodeSender.SendAsync(code, mobilePhone);
+        await _oneTimeCodeSender.SendAsync(code);
 
         return (code, true);
     }

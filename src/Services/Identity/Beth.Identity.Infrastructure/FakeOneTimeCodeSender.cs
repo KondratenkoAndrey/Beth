@@ -13,9 +13,9 @@ public class FakeOneTimeCodeSender : IOneTimeCodeSender
         _logger = logger;
     }
 
-    public Task SendAsync(OneTimeCode code, string mobilePhone)
+    public Task SendAsync(OneTimeCode code)
     {
-        _logger.LogInformation("Одноразовый код {code} отправлен на {phone}", code.Code, mobilePhone);
+        _logger.LogInformation("Одноразовый код {code} отправлен на {phone}", code.Code, code.MobilePhone);
         return Task.CompletedTask;
     }
 }
