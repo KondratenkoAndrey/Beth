@@ -36,9 +36,6 @@ public class SendOneTimeCode
         _oneTimeCodeRepository.Verify(r => r.AddCodeAsync(code), Times.Once);
         _oneTimeCodeSender.Verify(s => s.SendAsync(code), Times.Once);
         code.Should().NotBeNull();
-        code.MobilePhone.Should().Be(mobilePhone);
-        code.Code.Should().BeGreaterThan(0);
-        code.MobilePhone.Should().Be(mobilePhone);
         isNew.Should().BeTrue();
     }
 
