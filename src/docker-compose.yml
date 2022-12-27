@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  beth.identity.api:
+    image: ${DOCKER_REGISTRY-}bethidentityapi
+    build:
+      context: .
+      dockerfile: Services/Identity/Beth.Identity.Api/Dockerfile

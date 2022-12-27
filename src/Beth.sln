@@ -25,9 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A5DB0429
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beth.Identity.UnitTests", "Services\Identity\Beth.Identity.UnitTests\Beth.Identity.UnitTests.csproj", "{E0B9211E-8F33-4D2C-89C2-E1CC9C24A63D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Identity.Api", "Services\Identity\Beth.Identity.Api\Beth.Identity.Api.csproj", "{D2AD170F-9A29-49A8-84C4-B497FCA9D032}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beth.Identity.Api", "Services\Identity\Beth.Identity.Api\Beth.Identity.Api.csproj", "{D2AD170F-9A29-49A8-84C4-B497FCA9D032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beth.Identity.Infrastructure", "Services\Identity\Beth.Identity.Infrastructure\Beth.Identity.Infrastructure.csproj", "{B82F9DBD-A404-464E-B1DA-EE5D2B99BCB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Beth.Identity.Infrastructure", "Services\Identity\Beth.Identity.Infrastructure\Beth.Identity.Infrastructure.csproj", "{B82F9DBD-A404-464E-B1DA-EE5D2B99BCB5}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{5CD266B3-F2CB-4CE0-92DF-29812D67C128}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{B82F9DBD-A404-464E-B1DA-EE5D2B99BCB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B82F9DBD-A404-464E-B1DA-EE5D2B99BCB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B82F9DBD-A404-464E-B1DA-EE5D2B99BCB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CD266B3-F2CB-4CE0-92DF-29812D67C128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CD266B3-F2CB-4CE0-92DF-29812D67C128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CD266B3-F2CB-4CE0-92DF-29812D67C128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CD266B3-F2CB-4CE0-92DF-29812D67C128}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
