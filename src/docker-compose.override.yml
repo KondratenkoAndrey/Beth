@@ -1,8 +1,23 @@
 version: '3.4'
 
 services:
-  beth.identity.api:
+  identity-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "80"
+        
+  catalog-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__catalogDb=Host=catalog-db:5432;Database=catalog_db;Username=postgres;Password=postgres
+    ports:
+      - "5101:80"
+  
+  catalog-db:
+    image: postgres:15.1
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"

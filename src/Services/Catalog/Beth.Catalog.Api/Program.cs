@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-await builder.Services.AddCatalogDbContext(builder.Configuration);
+await builder.Services.AddCatalogDbContext(builder.Configuration["ConnectionStrings:catalogDb"]);
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
