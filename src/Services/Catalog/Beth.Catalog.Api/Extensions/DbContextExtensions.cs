@@ -37,4 +37,15 @@ public static class CatalogDbContextServiceConfiguration
 
         return app;
     }
+
+    public static async Task<WebApplication> SeedCatalogDbAsync(this WebApplication app)
+    {
+        using var scope = app.Services.CreateScope();
+        var services = scope.ServiceProvider;
+        var context = services.GetService<CatalogContext>();
+
+        await CatalogContextSeed.SeedAsync(context);
+        
+        return app;
+    }
 }

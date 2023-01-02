@@ -13,6 +13,7 @@ var app = builder.Build();
 await app.MigrateDbContext();
 if (app.Environment.IsDevelopment())
 {
+    await app.SeedCatalogDbAsync();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
