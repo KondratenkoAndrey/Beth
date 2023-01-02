@@ -4,6 +4,7 @@ using Beth.Catalog.Api.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Beth.Catalog.Api.Extensions;
 
@@ -24,6 +25,7 @@ public static class CatalogDbContextServiceConfiguration
         using var scope = app.Services.CreateScope();
         var services = scope.ServiceProvider;
         var context = services.GetService<CatalogContext>();
+        var logger = services.GetRequiredService<ILogger<CatalogContext>>();
 
         try
         {
@@ -31,7 +33,7 @@ public static class CatalogDbContextServiceConfiguration
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            logger.LogError("Ошибка миграции БД: {e}", e);
             throw;
         }
 
