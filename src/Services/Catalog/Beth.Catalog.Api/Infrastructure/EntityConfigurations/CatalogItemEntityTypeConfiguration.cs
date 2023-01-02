@@ -30,10 +30,12 @@ public class CatalogItemEntityTypeConfiguration : IEntityTypeConfiguration<Catal
         
         builder.HasOne(ci => ci.CatalogBrand)
             .WithMany()
-            .HasForeignKey(ci => ci.CatalogBrandId);
+            .HasForeignKey(ci => ci.CatalogBrandId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         builder.HasOne(ci => ci.CatalogType)
             .WithMany()
-            .HasForeignKey(ci => ci.CatalogTypeId);
+            .HasForeignKey(ci => ci.CatalogTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
