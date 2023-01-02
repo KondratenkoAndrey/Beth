@@ -2,7 +2,7 @@
 
 namespace Beth.Catalog.Api.ViewModel;
 
-public class PaginatedItemsViewModel<TEntity> where TEntity : class
+public class PaginatedViewModel<TEntity> where TEntity : class
 {
     public int PageIndex { get; private set; }
 
@@ -12,7 +12,7 @@ public class PaginatedItemsViewModel<TEntity> where TEntity : class
 
     public IEnumerable<TEntity> Data { get; private set; }
 
-    public PaginatedItemsViewModel(int pageIndex, int pageSize, long count, IEnumerable<TEntity> data)
+    public PaginatedViewModel(int pageIndex, int pageSize, long count, IEnumerable<TEntity> data)
     {
         PageIndex = pageIndex;
         PageSize = pageSize;
