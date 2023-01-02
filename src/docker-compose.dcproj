@@ -15,4 +15,10 @@
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="docker-compose.prod.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </Content>
+    <Content Include="README.md" />
+  </ItemGroup>
 </Project>

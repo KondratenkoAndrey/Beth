@@ -1,24 +1,18 @@
-version: '3.4'
+﻿version: '3.4'
 
 services:
   identity-api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "5200:80"
-        
+      - ASPNETCORE_ENVIRONMENT=Production
+  
   catalog-api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__catalogDb=Host=catalog-db:5432;Database=catalog_db;Username=postgres;Password=postgres
       - ImagesBaseUrl=${BETH_STORAGE_CATALOG_URL}
-    ports:
-      - "5201:80"
   
   catalog-db:
     image: postgres:15.1
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    ports:
-      - "5300:5432"
