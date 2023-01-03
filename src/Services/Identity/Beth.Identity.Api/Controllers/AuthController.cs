@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net;
+using Beth.Identity.Api.IntegrationEvents;
 using Beth.Identity.Api.Models;
 using Beth.Identity.Domain.Interfaces;
+using Beth.SharedKernel.EventBus.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Beth.Identity.Api.Controllers
@@ -11,10 +13,12 @@ namespace Beth.Identity.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IOneTimeCodeService _oneTimeCodeService;
+        private readonly IEventBus _eventBus;
 
-        public AuthController(IOneTimeCodeService oneTimeCodeService)
+        public AuthController(IOneTimeCodeService oneTimeCodeService, IEventBus eventBus)
         {
             _oneTimeCodeService = oneTimeCodeService;
+            _eventBus = eventBus;
         }
 
         [Route("otc/mobile/{mobilePhone}")]
@@ -49,6 +53,9 @@ namespace Beth.Identity.Api.Controllers
             {
                 return BadRequest();
             }
+            
+            var integrationEvent = new UserLoggedIntegrationEvent(mobilePhone);
+            await _eventBus.PublishAsync(integrationEvent);
             
             return Ok();
         }
