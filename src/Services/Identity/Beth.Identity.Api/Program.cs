@@ -21,7 +21,7 @@ builder.Services.AddScoped<IUserRepository, FakeUserRepository>();
 
 builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
 {
-    var configuration = ConfigurationOptions.Parse(builder.Configuration["ConnectionStrings:redisDb"], true);
+    var configuration = ConfigurationOptions.Parse(builder.Configuration["ConnectionStrings:RedisDb"], true);
     return ConnectionMultiplexer.Connect(configuration);
 });
 

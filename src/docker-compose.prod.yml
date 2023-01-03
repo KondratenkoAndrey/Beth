@@ -5,6 +5,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ConnectionStrings__redisDb=identity-db
+      - RabbitMQSettings__Host=rabbitmq
+      - RabbitMQSettings__Port=5672
+      - RabbitMQSettings__User=guest
+      - RabbitMQSettings__port=guest
   
   catalog-api:
     environment:

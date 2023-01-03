@@ -5,6 +5,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__redisDb=identity-db
+      - RabbitMQSettings__Host=rabbitmq
+      - RabbitMQSettings__Port=5672
+      - RabbitMQSettings__User=guest
+      - RabbitMQSettings__port=guest
     ports:
       - "5200:80"
         
