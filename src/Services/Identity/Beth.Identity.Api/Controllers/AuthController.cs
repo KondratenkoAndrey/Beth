@@ -39,7 +39,7 @@ namespace Beth.Identity.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> VerifyCode(string mobilePhone, int code)
         {
-            var oneTimeCode = await _oneTimeCodeService.FindOneTimeCode(mobilePhone);
+            var oneTimeCode = await _oneTimeCodeService.FindOneTimeCodeAsync(mobilePhone);
             if (oneTimeCode == null)
             {
                 return NotFound();

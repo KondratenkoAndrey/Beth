@@ -36,7 +36,7 @@ public class OneTimeCodeService : IOneTimeCodeService
         return (code, true);
     }
 
-    public async Task<OneTimeCode> FindOneTimeCode(string mobilePhone)
+    public async Task<OneTimeCode> FindOneTimeCodeAsync(string mobilePhone)
     {
         return await _oneTimeCodeRepository.FindCodeAsync(mobilePhone);
     }
