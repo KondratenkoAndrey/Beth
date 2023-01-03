@@ -23,7 +23,7 @@ public class OneTimeCodeService : IOneTimeCodeService
 
     public async Task<(OneTimeCode, bool)> SendOneTimeCode(string mobilePhone)
     {
-        var code = await _oneTimeCodeRepository.FindActiveCodeAsync(mobilePhone);
+        var code = await _oneTimeCodeRepository.FindCodeAsync(mobilePhone);
         if (code != null)
         {
             return (code, false);
@@ -34,5 +34,10 @@ public class OneTimeCodeService : IOneTimeCodeService
         await _oneTimeCodeSender.SendAsync(code);
 
         return (code, true);
+    }
+
+    public async Task<OneTimeCode> FindOneTimeCode(string mobilePhone)
+    {
+        return await _oneTimeCodeRepository.FindCodeAsync(mobilePhone);
     }
 }

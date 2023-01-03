@@ -29,7 +29,7 @@ public class OneTimeCodeRepository : IOneTimeCodeRepository
         }
     }
     
-    public async Task<OneTimeCode> FindActiveCodeAsync(string mobilePhone)
+    public async Task<OneTimeCode> FindCodeAsync(string mobilePhone)
     {
         var data = await _database.StringGetAsync(mobilePhone);
         if (data.IsNullOrEmpty)

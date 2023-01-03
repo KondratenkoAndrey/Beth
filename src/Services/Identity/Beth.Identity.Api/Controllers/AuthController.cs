@@ -17,11 +17,11 @@ namespace Beth.Identity.Api.Controllers
             _oneTimeCodeService = oneTimeCodeService;
         }
 
-        [Route("otp/toPhone/{mobilePhone}")]
+        [Route("otc/mobile/{mobilePhone}")]
         [HttpGet]
         [ProducesResponseType(typeof(SentCodeModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<ActionResult> SendOtpByPhone(
+        public async Task<ActionResult> SendOtcToPhone(
             [Required]
             [StringLength(10, MinimumLength = 10, ErrorMessage = "Должно быть 10 символов")]
             [RegularExpression(@"^\d+$", ErrorMessage = "Должно содержать только цифры")]
@@ -30,6 +30,27 @@ namespace Beth.Identity.Api.Controllers
             var (code, isNew) = await _oneTimeCodeService.SendOneTimeCode(mobilePhone);
             var response = new SentCodeModel(code, isNew);
             return Ok(response);
+        }
+
+        [Route("otc/mobile/{mobilePhone}/verify/{code:int}")]
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> VerifyCode(string mobilePhone, int code)
+        {
+            var oneTimeCode = await _oneTimeCodeService.FindOneTimeCode(mobilePhone);
+            if (oneTimeCode == null)
+            {
+                return NotFound();
+            }
+
+            if (oneTimeCode.Code != code)
+            {
+                return BadRequest();
+            }
+            
+            return Ok();
         }
     }
 }

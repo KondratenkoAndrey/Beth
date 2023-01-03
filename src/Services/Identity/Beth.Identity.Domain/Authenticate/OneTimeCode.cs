@@ -4,11 +4,15 @@ namespace Beth.Identity.Domain.Authenticate;
 
 public class OneTimeCode
 {
-    public int Code { get; }
+    public int Code { get; set; }
     public DateTime CreatedAt { get; set; }
-    public TimeSpan Duration { get; }
-    public string MobilePhone { get; }
+    public TimeSpan Duration { get; set; }
+    public string MobilePhone { get; set; }
 
+    public OneTimeCode()
+    {
+    }
+    
     public OneTimeCode(string mobilePhone, TimeSpan duration)
     {
         Code = new Random().Next(1000, 9999);

@@ -6,5 +6,5 @@ namespace Beth.Identity.Domain.Interfaces;
 public interface IOneTimeCodeRepository
 {
     public Task AddCodeAsync(OneTimeCode code);
-    public Task<OneTimeCode> FindActiveCodeAsync(string mobilePhone);
+    public Task<OneTimeCode> FindCodeAsync(string mobilePhone);
 }

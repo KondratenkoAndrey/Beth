@@ -48,7 +48,7 @@ public class SendOneTimeCode
     {
         var mobilePhone = "1234567890";
         _oneTimeCodeRepository
-            .Setup(r => r.FindActiveCodeAsync(mobilePhone))
+            .Setup(r => r.FindCodeAsync(mobilePhone))
             .ReturnsAsync(new OneTimeCode(mobilePhone, It.IsAny<TimeSpan>()));
         var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object, _oneTimeCodeSettings);
         var (code, isNew) = await sender.SendOneTimeCode(mobilePhone);
