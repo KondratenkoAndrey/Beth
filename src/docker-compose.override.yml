@@ -26,5 +26,10 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5301:5432"
+        
+  rabbitmq:
+    ports:
+      - "5302:15672"
+      - "5303:5672"
 
     
