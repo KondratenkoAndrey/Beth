@@ -5,13 +5,15 @@ namespace Beth.Identity.Domain.Authenticate;
 public class OneTimeCode
 {
     public int Code { get; }
-    public DateTime ExpiredAt { get; }
+    public DateTime CreatedAt { get; set; }
+    public TimeSpan Duration { get; }
     public string MobilePhone { get; }
 
-    public OneTimeCode(string mobilePhone)
+    public OneTimeCode(string mobilePhone, TimeSpan duration)
     {
         Code = new Random().Next(1000, 9999);
-        ExpiredAt = DateTime.Now.AddMinutes(1);
+        CreatedAt = DateTime.UtcNow;
+        Duration = duration;
         MobilePhone = mobilePhone;
     }
 }

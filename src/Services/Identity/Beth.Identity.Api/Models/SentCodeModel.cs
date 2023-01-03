@@ -9,6 +9,6 @@ public class SentCodeModel
     public SentCodeModel(OneTimeCode code, bool isNew)
     {
         IsNew = isNew;
-        ExpiredAt = code.ExpiredAt;
+        ExpiredAt = code.CreatedAt.Add(code.Duration);
     }
 }

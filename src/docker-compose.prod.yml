@@ -4,6 +4,7 @@ services:
   identity-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__redisDb=identity-db
   
   catalog-api:
     environment:
@@ -12,7 +13,6 @@ services:
       - ImagesBaseUrl=${BETH_STORAGE_CATALOG_URL}
   
   catalog-db:
-    image: postgres:15.1
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

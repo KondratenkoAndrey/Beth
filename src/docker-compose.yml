@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: Services/Identity/Beth.Identity.Api/Dockerfile
+    depends_on:
+      - identity-db
 
   catalog-api:
     image: ${DOCKER_REGISTRY-}catalog-api
@@ -16,6 +18,9 @@ services:
     depends_on:
       - identity-api
       - catalog-db
+  
+  identity-db:
+    image: redis:7.0.5
         
   catalog-db:
     image: postgres:15.1
