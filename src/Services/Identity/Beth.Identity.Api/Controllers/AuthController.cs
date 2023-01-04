@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net;
-using Beth.Identity.Api.IntegrationEvents;
 using Beth.Identity.Api.Models;
 using Beth.Identity.Domain.Interfaces;
 using Beth.SharedKernel.EventBus.Abstractions;
+using Beth.SharedKernel.EventBus.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Beth.Identity.Api.Controllers

@@ -14,7 +14,7 @@ public class RabbitMQEventBus : IEventBus
         _publishEndpoint = publishEndpoint;
     }
 
-    public async Task PublishAsync(IntegrationEvent @event)
+    public async Task PublishAsync<T>(T @event) where T : IntegrationEvent
     {
         await _publishEndpoint.Publish(@event);
     }
