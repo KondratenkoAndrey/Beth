@@ -3,8 +3,8 @@ using Beth.Identity.Domain.Interfaces;
 using Beth.Identity.Domain.Services;
 using Beth.Identity.Infrastructure;
 using Beth.Identity.Infrastructure.Repositories;
-using Beth.SharedKernel.EventBusRabbitMQ.Extensions;
-using Beth.SharedKernel.EventBusRabbitMQ.Settings;
+using Beth.SharedKernel.EventBus.RabbitMQ.Configurations;
+using Beth.SharedKernel.EventBus.RabbitMQ.Extensions;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,7 +25,7 @@ builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>
     return ConnectionMultiplexer.Connect(configuration);
 });
 
-builder.Services.AddMassTransitEventBus(builder.Configuration.GetSection("RabbitMQSettings").Get<RabbitMQSettings>());
+builder.Services.AddMassTransitEventBus(builder.Configuration.GetSection("RabbitMQSettings").Get<RabbitMQConfiguration>());
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

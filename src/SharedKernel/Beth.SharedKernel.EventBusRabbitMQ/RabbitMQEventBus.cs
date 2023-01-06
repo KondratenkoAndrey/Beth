@@ -3,7 +3,7 @@ using Beth.SharedKernel.EventBus.Abstractions;
 using Beth.SharedKernel.EventBus.Events;
 using MassTransit;
 
-namespace Beth.SharedKernel.EventBusRabbitMQ;
+namespace Beth.SharedKernel.EventBus.RabbitMQ;
 
 public class RabbitMQEventBus : IEventBus
 {
