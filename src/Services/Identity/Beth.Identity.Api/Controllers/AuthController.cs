@@ -23,7 +23,7 @@ namespace Beth.Identity.Api.Controllers
 
         [Route("otc/mobile/{mobilePhone}")]
         [HttpGet]
-        [ProducesResponseType(typeof(SentCodeModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(OneTimeCodeDto), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult> SendOtcToPhone(
             [Required]
@@ -32,7 +32,7 @@ namespace Beth.Identity.Api.Controllers
             string mobilePhone)
         {
             var (code, isNew) = await _oneTimeCodeService.SendOneTimeCode(mobilePhone);
-            var response = new SentCodeModel(code, isNew);
+            var response = new OneTimeCodeDto(code, isNew);
             return Ok(response);
         }
 

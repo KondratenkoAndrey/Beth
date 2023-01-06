@@ -2,11 +2,11 @@
 
 namespace Beth.Identity.Api.Models;
 
-public class SentCodeModel
+public record OneTimeCodeDto
 {
     public bool IsNew { get; }
     public DateTime ExpiredAt { get; }
-    public SentCodeModel(OneTimeCode code, bool isNew)
+    public OneTimeCodeDto(OneTimeCode code, bool isNew)
     {
         IsNew = isNew;
         ExpiredAt = code.CreatedAt.Add(code.Duration);
