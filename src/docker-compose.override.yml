@@ -40,7 +40,10 @@ services:
     ports:
       - "5302:15672"
       - "5303:5672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
 
 volumes:
   identity-db-data:
   catalog-db-data:
+  rabbitmq-data:
