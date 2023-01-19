@@ -14,11 +14,13 @@ namespace Beth.Identity.Api.Controllers
     {
         private readonly IOneTimeCodeService _oneTimeCodeService;
         private readonly IEventBus _eventBus;
+        private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IOneTimeCodeService oneTimeCodeService, IEventBus eventBus)
+        public AuthController(IOneTimeCodeService oneTimeCodeService, IEventBus eventBus, ILogger<AuthController> logger)
         {
             _oneTimeCodeService = oneTimeCodeService;
             _eventBus = eventBus;
+            _logger = logger;
         }
 
         [Route("otc/mobile/{mobilePhone}")]
@@ -56,6 +58,7 @@ namespace Beth.Identity.Api.Controllers
             
             var integrationEvent = new UserLoggedIntegrationEvent(mobilePhone);
             await _eventBus.PublishAsync(integrationEvent);
+            _logger.LogInformation("{event} was published at {date}", integrationEvent, DateTime.UtcNow);
             
             return Ok();
         }

@@ -2,7 +2,8 @@
 ### Development
 ```sh
 # By default uses docker-compose.yml and overrides by docker-compose.override.yml
-docker-compose up
+docker-compose -p beth up
+docker-compose -p beth down
 ```
 
 ### Production
