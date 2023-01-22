@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\SharedKernel\Beth.SharedKernel.EventBusRabbitMQ\Beth.SharedKernel.EventBus.RabbitMQ.csproj" />
-    <ProjectReference Include="..\..\..\SharedKernel\Beth.SharedKernel.EventBus\Beth.SharedKernel.EventBus.csproj" />
     <ProjectReference Include="..\Beth.Identity.Domain\Beth.Identity.Domain.csproj" />
     <ProjectReference Include="..\Beth.Identity.Infrastructure\Beth.Identity.Infrastructure.csproj" />
   </ItemGroup>

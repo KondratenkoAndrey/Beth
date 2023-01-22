@@ -33,7 +33,7 @@ namespace Beth.Identity.Api.Controllers
             [RegularExpression(@"^\d+$", ErrorMessage = "Должно содержать только цифры")]
             string mobilePhone)
         {
-            var (code, isNew) = await _oneTimeCodeService.SendOneTimeCode(mobilePhone);
+            var (code, isNew) = await _oneTimeCodeService.RequestOneTimeCode(mobilePhone);
             var response = new OneTimeCodeDto(code, isNew);
             return Ok(response);
         }

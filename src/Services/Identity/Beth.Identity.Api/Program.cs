@@ -16,7 +16,7 @@ builder.Services.Configure<OneTimeCodeSettings>(builder.Configuration.GetSection
 
 builder.Services.AddScoped<IOneTimeCodeService, OneTimeCodeService>();
 builder.Services.AddScoped<IOneTimeCodeRepository, OneTimeCodeRepository>();
-builder.Services.AddScoped<IOneTimeCodeSender, FakeOneTimeCodeSender>();
+builder.Services.AddScoped<IOneTimeCodeSender, OneTimeCodeSender>();
 builder.Services.AddScoped<IUserRepository, FakeUserRepository>();
 
 builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>

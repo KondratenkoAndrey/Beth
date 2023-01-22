@@ -36,7 +36,7 @@ public class SendOneTimeCode
     {
         var mobilePhone = "1234567890";
         var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object, _oneTimeCodeSettings);
-        var (code, isNew) = await sender.SendOneTimeCode(mobilePhone);
+        var (code, isNew) = await sender.RequestOneTimeCode(mobilePhone);
         _oneTimeCodeRepository.Verify(r => r.AddCodeAsync(code), Times.Once);
         _oneTimeCodeSender.Verify(s => s.SendAsync(code), Times.Once);
         code.Should().NotBeNull();
@@ -51,7 +51,7 @@ public class SendOneTimeCode
             .Setup(r => r.FindCodeAsync(mobilePhone))
             .ReturnsAsync(new OneTimeCode(mobilePhone, It.IsAny<TimeSpan>()));
         var sender = new OneTimeCodeService(_oneTimeCodeRepository.Object, _oneTimeCodeSender.Object, _oneTimeCodeSettings);
-        var (code, isNew) = await sender.SendOneTimeCode(mobilePhone);
+        var (code, isNew) = await sender.RequestOneTimeCode(mobilePhone);
         code.Should().NotBeNull();
         code.MobilePhone.Should().Be(mobilePhone);
         isNew.Should().BeFalse();

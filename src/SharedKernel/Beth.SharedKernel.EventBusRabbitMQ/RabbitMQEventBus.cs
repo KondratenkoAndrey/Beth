@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Beth.SharedKernel.EventBus.Abstractions;
+using Beth.SharedKernel.EventBus.Commands;
 using Beth.SharedKernel.EventBus.Events;
 using MassTransit;
 
@@ -15,6 +16,11 @@ public class RabbitMQEventBus : IEventBus
     }
 
     public async Task PublishAsync<T>(T @event) where T : IntegrationEvent
+    {
+        await _publishEndpoint.Publish(@event);
+    }
+
+    public async Task SendAsync<T>(T @event) where T : BaseCommand
     {
         await _publishEndpoint.Publish(@event);
     }

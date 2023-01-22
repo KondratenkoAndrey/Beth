@@ -21,7 +21,7 @@ public class OneTimeCodeService : IOneTimeCodeService
         _settings = settings.Value;
     }
 
-    public async Task<(OneTimeCode, bool)> SendOneTimeCode(string mobilePhone)
+    public async Task<(OneTimeCode, bool)> RequestOneTimeCode(string mobilePhone)
     {
         var code = await _oneTimeCodeRepository.FindCodeAsync(mobilePhone);
         if (code != null)
