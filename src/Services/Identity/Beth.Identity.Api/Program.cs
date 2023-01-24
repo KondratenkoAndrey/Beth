@@ -1,7 +1,6 @@
 using Beth.Identity.Domain.Authenticate;
 using Beth.Identity.Domain.Interfaces;
 using Beth.Identity.Domain.Services;
-using Beth.Identity.Infrastructure;
 using Beth.Identity.Infrastructure.Repositories;
 using Beth.SharedKernel.EventBus.RabbitMQ.Configurations;
 using Beth.SharedKernel.EventBus.RabbitMQ.Extensions;
@@ -16,7 +15,6 @@ builder.Services.Configure<OneTimeCodeSettings>(builder.Configuration.GetSection
 
 builder.Services.AddScoped<IOneTimeCodeService, OneTimeCodeService>();
 builder.Services.AddScoped<IOneTimeCodeRepository, OneTimeCodeRepository>();
-builder.Services.AddScoped<IOneTimeCodeSender, OneTimeCodeSender>();
 builder.Services.AddScoped<IUserRepository, FakeUserRepository>();
 
 builder.Services.AddSingleton<ConnectionMultiplexer>(sp =>

@@ -2,8 +2,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Net;
 using Beth.Identity.Api.Models;
 using Beth.Identity.Domain.Interfaces;
-using Beth.SharedKernel.EventBus.Abstractions;
-using Beth.SharedKernel.EventBus.Events;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Beth.Identity.Api.Controllers
@@ -13,13 +11,11 @@ namespace Beth.Identity.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IOneTimeCodeService _oneTimeCodeService;
-        private readonly IEventBus _eventBus;
         private readonly ILogger<AuthController> _logger;
 
-        public AuthController(IOneTimeCodeService oneTimeCodeService, IEventBus eventBus, ILogger<AuthController> logger)
+        public AuthController(IOneTimeCodeService oneTimeCodeService, ILogger<AuthController> logger)
         {
             _oneTimeCodeService = oneTimeCodeService;
-            _eventBus = eventBus;
             _logger = logger;
         }
 
@@ -45,22 +41,8 @@ namespace Beth.Identity.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> VerifyCode(string mobilePhone, int code)
         {
-            var oneTimeCode = await _oneTimeCodeService.FindOneTimeCodeAsync(mobilePhone);
-            if (oneTimeCode == null)
-            {
-                return NotFound();
-            }
-
-            if (oneTimeCode.Code != code)
-            {
-                return BadRequest();
-            }
-            
-            var integrationEvent = new UserLoggedIntegrationEvent(mobilePhone);
-            await _eventBus.PublishAsync(integrationEvent);
-            _logger.LogInformation("{event} was published at {date}", integrationEvent, DateTime.UtcNow);
-            
-            return Ok();
+            var result = await _oneTimeCodeService.VerifyCodeAsync(mobilePhone, code);
+            return result ? Ok() : NotFound();
         }
     }
 }

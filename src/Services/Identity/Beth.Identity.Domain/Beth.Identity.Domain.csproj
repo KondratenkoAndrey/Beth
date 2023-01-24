@@ -10,4 +10,8 @@
       <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\SharedKernel\Beth.SharedKernel.EventBus\Beth.SharedKernel.EventBus.csproj" />
+    </ItemGroup>
+
 </Project>

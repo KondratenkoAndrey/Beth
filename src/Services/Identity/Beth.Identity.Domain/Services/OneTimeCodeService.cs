@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Beth.Identity.Domain.Authenticate;
 using Beth.Identity.Domain.Interfaces;
+using Beth.SharedKernel.EventBus.Abstractions;
+using Beth.SharedKernel.EventBus.Commands;
+using Beth.SharedKernel.EventBus.Events;
 using Microsoft.Extensions.Options;
 
 namespace Beth.Identity.Domain.Services;
@@ -8,16 +11,16 @@ namespace Beth.Identity.Domain.Services;
 public class OneTimeCodeService : IOneTimeCodeService
 {
     private readonly IOneTimeCodeRepository _oneTimeCodeRepository;
-    private readonly IOneTimeCodeSender _oneTimeCodeSender;
+    private readonly IEventBus _eventBus;
     private readonly OneTimeCodeSettings _settings;
 
     public OneTimeCodeService(
         IOneTimeCodeRepository oneTimeCodeRepository,
-        IOneTimeCodeSender oneTimeCodeSender,
+        IEventBus eventBus,
         IOptions<OneTimeCodeSettings> settings)
     {
         _oneTimeCodeRepository = oneTimeCodeRepository;
-        _oneTimeCodeSender = oneTimeCodeSender;
+        _eventBus = eventBus;
         _settings = settings.Value;
     }
 
@@ -31,13 +34,22 @@ public class OneTimeCodeService : IOneTimeCodeService
 
         code = new OneTimeCode(mobilePhone, _settings.Duration);
         await _oneTimeCodeRepository.AddCodeAsync(code);
-        await _oneTimeCodeSender.SendAsync(code);
+        var command = new SendOneTimeCodeCommand(code.Code, code.MobilePhone);
+        await _eventBus.SendAsync(command);
 
         return (code, true);
     }
 
-    public async Task<OneTimeCode> FindOneTimeCodeAsync(string mobilePhone)
+    public async Task<bool> VerifyCodeAsync(string mobilePhone, int code)
     {
-        return await _oneTimeCodeRepository.FindCodeAsync(mobilePhone);
+        var oneTimeCode = await _oneTimeCodeRepository.FindCodeAsync(mobilePhone);
+        if (oneTimeCode == null || oneTimeCode.Code != code)
+        {
+            return false;
+        }
+        
+        var integrationEvent = new UserLoggedIntegrationEvent(mobilePhone);
+        await _eventBus.PublishAsync(integrationEvent);
+        return true;
     }
 }
